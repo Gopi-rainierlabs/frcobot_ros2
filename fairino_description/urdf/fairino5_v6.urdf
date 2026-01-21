@@ -351,7 +351,7 @@
       </material>
     </visual>
     <collision>
-      <origins
+      <origin
         xyz="0 0 0"
         rpy="0 0 0" />
       <geometry>
@@ -457,5 +457,55 @@
       soft_upper_limit="3.0543"
       k_position="15"
       k_velocity="10" />
+  </joint>
+  <link
+    name="weld_mount_connector_link">
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://fairino_description/meshes/fairino5_v6/weld_end_effector.stl" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.8 0.2 0.2 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://fairino_description/meshes/fairino5_v6/weld_end_effector.stl" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="wrist3_to_weld_mount_connector"
+    type="fixed">
+    <origin
+      xyz="0 0 0.0911"
+      rpy="0 0 3.14159" />
+    <parent
+      link="wrist3_link" />
+    <child
+      link="weld_mount_connector_link" />
+  </joint>
+  <link
+    name="weld_tip" />
+  <joint
+    name="weld_mount_connector_to_weld_tip"
+    type="fixed">
+    <origin
+      xyz="0 0.04868120 0.25567253"
+      rpy="0 0 0" />
+    <parent
+      link="weld_mount_connector_link" />
+    <child
+      link="weld_tip" />
   </joint>
 </robot>
