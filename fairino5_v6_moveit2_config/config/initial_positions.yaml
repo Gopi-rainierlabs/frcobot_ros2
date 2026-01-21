@@ -1,9 +1,11 @@
 # Default initial positions for fairino5_v6_robot's ros2_control fake system
+# These values are in radians
+# j1: -43°, j2: 25°, j3: -77°, j4: -128°, j5: -47°, j6: 0°
 
 initial_positions:
-  j1: 0
-  j2: 0
-  j3: 0
-  j4: 0
-  j5: 0
-  j6: 0
+  j1: -0.7505
+  j2: 0.4363
+  j3: -1.3439
+  j4: -2.2340
+  j5: -0.8203
+  j6: 0.0

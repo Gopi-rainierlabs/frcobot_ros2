@@ -1,14 +1,26 @@
 <?xml version="1.0"?>
 <robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="fairino5_v6_robot">
     <xacro:arg name="initial_positions_file" default="initial_positions.yaml" />
+    <xacro:arg name="use_hardware" default="false" />
+    <xacro:arg name="use_realsense" default="false" />
 
     <!-- Import fairino5_v6_robot urdf file -->
     <xacro:include filename="$(find fairino_description)/urdf/fairino5_v6.urdf" />
+
+    <!-- Include RealSense D435i camera description (camera-only xacro) - optional -->
+    <xacro:if value="$(arg use_realsense)">
+        <xacro:include filename="$(find realsense2_description)/urdf/_d435i.urdf.xacro" />
+
+        <!-- Instantiate D435i camera and attach to weld mount connector link -->
+        <xacro:sensor_d435i parent="weld_mount_connector_link">
+            <origin xyz="0 0.0605 0.01415" rpy="0 -1.57079632679 -1.57079632679"/>
+        </xacro:sensor_d435i>
+    </xacro:if>
 
     <!-- Import control_xacro -->
     <xacro:include filename="fairino5_v6_robot.ros2_control.xacro" />
 
 
-    <xacro:fairino5_v6_robot_ros2_control name="FakeSystem" initial_positions_file="$(arg initial_positions_file)"/>
+    <xacro:fairino5_v6_robot_ros2_control name="FakeSystem" initial_positions_file="$(arg initial_positions_file)" use_hardware="$(arg use_hardware)"/>
 
 </robot>
